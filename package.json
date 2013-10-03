@@ -1,0 +1,21 @@
+{
+	"name": "payson",
+	"version": "0.0.0",
+	"description": "Node.js lib for the Payson API",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/klandestino/payson"
+	},
+	"author": "Alfred Godoy <alfred@klandestino.se>",
+	"license": "GPLv3",
+	"bugs": {
+		"url": "https://github.com/klandestino/payson/issues"
+	},
+	"dependencies": {
+		"request": "*"
+	}
+}

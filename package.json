@@ -16,6 +16,6 @@
 		"url": "https://github.com/klandestino/payson/issues"
 	},
 	"dependencies": {
-		"request": "*"
+		"request": "2.27.0"
 	}
 }

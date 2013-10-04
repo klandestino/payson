@@ -47,14 +47,14 @@ You could also add items defining more exactly what you are about to sell:
 		description: 'Cool red gadget.',
 		quantity: 5,
 		unitPrice: 8, // Should exclude VAT
-		taxPercentage: 25
+		taxPercentage: 0.25
 	});
 
 	new payment.Item({
 		description: 'Cool box for gadgets.',
 		quantity: 1,
 		unitPrice: 116, // Should exclude VAT
-		taxPercentage: 25
+		taxPercentage: 0.25
 	});
 
 ### 2. Redirect user to Payson
@@ -71,9 +71,32 @@ When your payment is defined, you should redirect your user to Payson for the ve
 
 ## All methods
 
-### Payson(string agentId, string apiPassword, [string applicationId])
+### Payson([string agentId], [string apiPassword], [string applicationId])
 
 Constructor for creating a new Payson object.
+
+If you call it without arguments, the lib will use Payson's API testing servers and testing credentials.
+
+To use your own account (doing sharp payments), you should provide at least agentId and apiPassword. applicationId should only be provided if you have one.
+
+Note: When testing, you the payment receiver should be testagent-1@payson.se, like this:
+
+	var Payson = require('payson');
+	var payson = new Payson(); // No agent Id or password, so we are calling the test API.
+	var payment = new payson.Payment({
+		returnUrl: 'http://example.org/payson-return',
+		cancelUrl: 'http://example.org/payson-cancel',
+		memo: 'Buying cool things from example.org',
+		senderEmail: 'test@example.org',
+		senderFirstName: 'John',
+		senderLastName: 'Doe'
+	});
+	new payment.Receiver({
+		email: 'testagent-1@payson.se', // This is the test payment receiver.
+		amount: 195, // Should include VAT
+		firstName: 'Sven',
+		lastName: 'Svensson'
+	});
 
 ### Payson.Payment([object options])
 
